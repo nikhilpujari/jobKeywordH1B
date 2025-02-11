@@ -31,7 +31,7 @@ function MainSection() {
 
     try {
       // Fetch keywords
-      const keywordResponse = await fetch('http://localhost:5001/keywords', {
+      const keywordResponse = await fetch('http://18.223.159.118:5001/keywords', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ function MainSection() {
       setShowKeywords(true);
 
       // Fetch H1B1 information
-      const h1b1Response = await fetch('http://localhost:5001/h1b1', {
+      const h1b1Response = await fetch('http://18.223.159.118:5001/h1b1', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
