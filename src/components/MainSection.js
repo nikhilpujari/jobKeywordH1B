@@ -198,7 +198,6 @@ function MainSection() {
                       <div className="single-ststistics-box">
                         <div className="statistics-content">
                           <div className="counter">{info.salary}</div>
-                          <span>K+</span>
                         </div>
                         <h3>Median Salary</h3>
                       </div>
