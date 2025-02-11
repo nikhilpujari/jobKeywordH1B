@@ -1,10 +1,18 @@
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
+app.use(express.json());
 
 const app = express();
-app.use(cors());
-app.use(express.json()); // To handle JSON requests
+
+// Enable CORS with specific origin
+app.use(cors({
+  origin: 'http://18.223.159.118:3000', // Your frontend IP
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
+app.use(express.json());
 
 // Endpoint to fetch keywords and phrases for a given role and company
 app.post('/keywords', async (req, res) => {
@@ -30,16 +38,15 @@ app.post('/keywords', async (req, res) => {
       },
       {
         headers: {
-          'Authorization': 'Bearer secret-api',
+          'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
           'Content-Type': 'application/json',
         },
       }
     );
 
     const responseContent = response.data.choices[0].message.content;
-    console.log('Raw GPT Response for Keywords:', responseContent); // Log response for debugging
+    console.log('Raw GPT Response for Keywords:', responseContent);
 
-    // Extract and parse the JSON part
     const jsonMatch = responseContent.match(/\{.*\}/s);
     if (!jsonMatch) {
       throw new Error('No JSON found in the response.');
@@ -50,56 +57,6 @@ app.post('/keywords', async (req, res) => {
   } catch (err) {
     console.error('Error fetching keywords and phrases:', err);
     res.status(500).send('Failed to fetch keywords and phrases');
-  }
-});
-
-// Endpoint for H1B1 information
-app.post('/h1b1', async (req, res) => {
-  const { company } = req.body;
-
-  try {
-    const prompt = `Perform a web search on h1bgrader.com to find H1B1 information for the number of applications, rejected, accepted, and median salary at ${company}. Return only a valid JSON response with the following format:
-    [
-      {
-        "applications": "Applications",
-        "accepted": "Accepted",
-        "rejected": "Rejected",
-        "salary": "Salary"
-      }
-    ]
-    Ensure the JSON is valid and does not contain any additional text.`;
-
-    const response = await axios.post(
-      'https://api.openai.com/v1/chat/completions',
-      {
-        model: 'gpt-4',
-        messages: [
-          { role: 'system', content: 'You are a helpful assistant.' },
-          { role: 'user', content: prompt },
-        ],
-      },
-      {
-        headers: {
-          'Authorization': 'Bearer secret-api',
-          'Content-Type': 'application/json',
-        },
-      }
-    );
-
-    const responseContent = response.data.choices[0].message.content;
-    console.log('H1B1 Information Response:', responseContent); // Log raw response for debugging
-
-    // Extract and parse the JSON part
-    const jsonMatch = responseContent.match(/\[.*\]/s);
-    if (!jsonMatch) {
-      throw new Error('No JSON found in the response.');
-    }
-
-    const h1b1Info = JSON.parse(jsonMatch[0]);
-    res.json(h1b1Info);
-  } catch (err) {
-    console.error('Error fetching H1B1 information:', err);
-    res.status(500).send('Failed to fetch H1B1 information');
   }
 });
 
