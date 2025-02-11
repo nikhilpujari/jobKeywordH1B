@@ -13,10 +13,10 @@ function MainSection() {
 
   const placeholderH1B1Info = [
     {
-      applications: 'NA',
-      accepted: 'NA',
-      rejected: 'NA',
-      salary: 'NA',
+      initialApproval: 'NA',
+      initialDenial: 'NA',
+      continuingApproval: 'NA',
+      continuingDenial: 'NA',
     },
   ];
 
@@ -161,53 +161,55 @@ function MainSection() {
           </section>
         )}
 
-        {showH1B1 && (
-          <section id="statistics" className="statistics">
-            <div className="container">
-              <div className="section-header">
-                <h2>{company}'s H1B1 History</h2>
-              </div>
-              <div className="statistics-counter">
-                {h1b1Info.map((info, index) => (
-                  <div className="row" key={index}>
-                    <div className="col-md-3 col-sm-6">
-                      <div className="single-ststistics-box">
-                        <div className="statistics-content">
-                          <div className="counter">{info.applications}</div>
-                        </div>
-                        <h3>Applications</h3>
-                      </div>
+      {showH1B1 && (
+        <section id="statistics" className="statistics">
+          <div className="container">
+            <div className="section-header">
+              <h2>{company}'s H1B1 History</h2>
+            </div>
+            <div className="statistics-counter">
+              <div className="row">
+                <div className="col-md-3 col-sm-6">
+                  <div className="single-ststistics-box">
+                    <div className="statistics-content">
+                      <div className="counter">{h1b1Info.initialApproval}</div>
                     </div>
-                    <div className="col-md-3 col-sm-6">
-                      <div className="single-ststistics-box">
-                        <div className="statistics-content">
-                          <div className="counter">{info.rejected}</div>
-                        </div>
-                        <h3>Rejected</h3>
-                      </div>
-                    </div>
-                    <div className="col-md-3 col-sm-6">
-                      <div className="single-ststistics-box">
-                        <div className="statistics-content">
-                          <div className="counter">{info.accepted}</div>
-                        </div>
-                        <h3>Accepted</h3>
-                      </div>
-                    </div>
-                    <div className="col-md-3 col-sm-6">
-                      <div className="single-ststistics-box">
-                        <div className="statistics-content">
-                          <div className="counter">{info.salary}</div>
-                        </div>
-                        <h3>Median Salary</h3>
-                      </div>
-                    </div>
+                    <h3>Initial Approval</h3>
                   </div>
-                ))}
+                </div>
+                <div className="col-md-3 col-sm-6">
+                  <div className="single-ststistics-box">
+                    <div className="statistics-content">
+                      <div className="counter">{h1b1Info.initialDenial}</div>
+                    </div>
+                    <h3>Initial Denial</h3>
+                  </div>
+                </div>
+                <div className="col-md-3 col-sm-6">
+                  <div className="single-ststistics-box">
+                    <div className="statistics-content">
+                      <div className="counter">{h1b1Info.continuingApproval}</div>
+                    </div>
+                    <h3>Continuing Approval</h3>
+                  </div>
+                </div>
+                <div className="col-md-3 col-sm-6">
+                  <div className="single-ststistics-box">
+                    <div className="statistics-content">
+                      <div className="counter">{h1b1Info.continuingDenial}</div>
+                    </div>
+                    <h3>Continuing Denial</h3>
+                  </div>
+                </div>
               </div>
             </div>
-          </section>
-        )}
+            <div className="section-header">
+              <p>This is the H1B data for the year 2024 for all subsidiaries of {company}, sourced from uscis.gov.</p>
+            </div>
+          </div>
+        </section>
+      )}
+
       </div>
     </>
   );
