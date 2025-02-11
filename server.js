@@ -1,18 +1,10 @@
 const express = require('express');
-const axios = require('axios');
 const cors = require('cors');
-app.use(express.json());
 
-const app = express();
+const app = express();  // Ensure this comes before any `app.use` calls
 
-// Enable CORS with specific origin
-app.use(cors({
-  origin: 'http://18.223.159.118:3000', // Your frontend IP
-  methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
-
-app.use(express.json());
+app.use(cors());
+app.use(express.json());  // Correct placement after app initialization
 
 // Endpoint to fetch keywords and phrases for a given role and company
 app.post('/keywords', async (req, res) => {
@@ -45,8 +37,6 @@ app.post('/keywords', async (req, res) => {
     );
 
     const responseContent = response.data.choices[0].message.content;
-    console.log('Raw GPT Response for Keywords:', responseContent);
-
     const jsonMatch = responseContent.match(/\{.*\}/s);
     if (!jsonMatch) {
       throw new Error('No JSON found in the response.');
@@ -60,4 +50,4 @@ app.post('/keywords', async (req, res) => {
   }
 });
 
-app.listen(5001, () => console.log('Server running on port 5001'));
+app.listen(5001, '0.0.0.0', () => console.log('Server running on port 5001'));
