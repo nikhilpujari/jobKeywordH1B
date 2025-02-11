@@ -1,32 +1,3 @@
-/*==================================
-* Author        : "ThemeSine"
-* Template Name : Listrace  HTML Template
-* Version       : 1.0
-==================================== */
-
-/*==================================
-font-family: 'Roboto', sans-serif;
-==================================== */
-
-
-/*=========== TABLE OF CONTENTS ===========
-1.  General css (Reset code)
-2.  Header-top
-3.  Top-area
-4.  Welcome-hero
-5.  List-topics
-6.  Works  
-7.  Explore
-8.  Reviews
-9.  Counter
-10. Blog
-11. Subscribe
-12. Footer
-==========================================*/
-
-/*-------------------------------------
-		1.General css (Reset code)
---------------------------------------*/
 *{
     padding: 0;
     margin: 0;
@@ -1075,3 +1046,106 @@ nav.navbar.bootsnav .navbar-toggle i{color: #ff545a;}
     0%   {bottom:0px;}
     100%  {bottom:7px;}
 }
+
+/* Make the header and sections responsive */
+@media (max-width: 768px) {
+    .welcome-hero {
+      height: auto;
+      padding: 40px 20px;
+      text-align: center;
+    }
+  
+    .welcome-hero-txt h2 {
+      font-size: 28px;
+      letter-spacing: 1px;
+      line-height: 1.2;
+    }
+  
+    .welcome-hero-txt p {
+      font-size: 16px;
+      margin-top: 15px;
+    }
+  
+    .welcome-hero-serch-box {
+      flex-direction: column;
+      align-items: center;
+      margin-top: 40px;
+    }
+  
+    .welcome-hero-form {
+      flex-direction: column;
+      width: 100%;
+      height: auto;
+    }
+  
+    .single-welcome-hero-form {
+      width: 100%;
+      padding: 10px 20px;
+    }
+  
+    .single-welcome-hero-form input {
+      width: 100%;
+    }
+  
+    .welcome-hero-btn {
+      margin-left: 0;
+      margin-top: 15px;
+    }
+  }
+  
+  /* Make the keywords section responsive */
+  @media (max-width: 768px) {
+    .keywords-row {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .keywords-col {
+      max-width: 100%;
+      text-align: center;
+    }
+  
+    .keywords-col h3 {
+      font-size: 20px;
+      padding-bottom: 3px;
+    }
+  
+    .keywords-col ul li {
+      font-size: 14px;
+    }
+  }
+  
+  /* Make statistics section responsive */
+  @media (max-width: 768px) {
+    .statistics {
+      flex-direction: column;
+      padding: 60px 20px;
+    }
+  
+    .statistics-counter {
+      flex-direction: column;
+    }
+  
+    .single-ststistics-box {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  
+    .statistics-content {
+      font-size: 40px;
+    }
+  }
+  
+  /* Footer responsiveness */
+  @media (max-width: 768px) {
+    .footer-menu ul.footer-menu-item {
+      text-align: center;
+      padding-top: 20px;
+    }
+  
+    .footer-social {
+      text-align: center;
+      margin-top: 20px;
+    }
+  }
+  
