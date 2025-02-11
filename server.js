@@ -22,7 +22,6 @@ const BUCKET_NAME = 'jobhunt-s3';  // Replace with your bucket name
 const CSV_KEY = 'Consolidated_Employer_Data.csv';  // Replace with your CSV file name
 
 // Middleware
-const cors = require('cors');
 
 app.use(cors({
   origin: ['http://18.223.159.118:3000'],  // Allow your frontend domain/IP
