@@ -22,7 +22,15 @@ const BUCKET_NAME = 'jobhunt-s3';  // Replace with your bucket name
 const CSV_KEY = 'Consolidated_Employer_Data.csv';  // Replace with your CSV file name
 
 // Middleware
-app.use(cors({ origin: '*' })); // Allow all origins (or specify your frontend URL for production)
+const cors = require('cors');
+
+app.use(cors({
+  origin: ['http://18.223.159.118:3000'],  // Allow your frontend domain/IP
+  methods: 'GET,POST,PUT,DELETE',
+  allowedHeaders: 'Content-Type,Authorization',
+  credentials: true,  // If needed for authentication
+}));
+
 app.use(express.json()); // To handle JSON requests
 
 // Secure API Key
@@ -135,6 +143,6 @@ app.post('/h1b1', (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
 });
