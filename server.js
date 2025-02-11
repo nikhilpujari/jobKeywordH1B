@@ -23,12 +23,16 @@ const CSV_KEY = 'Consolidated_Employer_Data.csv';  // Replace with your CSV file
 
 // Middleware
 
-app.use(cors({
-  origin: ['http://18.223.159.118:3000'],  // Allow your frontend domain/IP
-  methods: 'GET,POST,PUT,DELETE',
-  allowedHeaders: 'Content-Type,Authorization',
-  credentials: true,  // If needed for authentication
-}));
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'http://18.223.159.118:3000');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+  next();
+});
+
 
 app.use(express.json()); // To handle JSON requests
 
