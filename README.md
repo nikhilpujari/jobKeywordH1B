@@ -1,70 +1,110 @@
-# Getting Started with Create React App
+# 🚀 AI-Powered H1B Insights  
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+An AI-driven tool that provides **H1B employer data insights** and **resume optimization suggestions** using AWS S3, Node.js, and OpenAI API.  
 
-## Available Scripts
+![Image 1](screenshots/image1.png)
 
-In the project directory, you can run:
+![Image 2](screenshots/image2.png)
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 📌 Features  
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+✅ **H1B Status Insights** – Fetches **2024 H1B employer data** from AWS S3, cleans it, and makes it accessible via an API.  
+✅ **Resume Optimization** – Generates **tailored** keywords for a given company + role (not generic lists!) to help job seekers align their resumes.  
+✅ **Scalable Cloud Architecture** – Uses **AWS S3 & EC2** for data storage and API hosting.  
+✅ **Secure API Deployment** – Implements **IAM roles, security groups, and best practices** to keep access credentials secure.  
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🛠️ Tech Stack  
 
-### `npm run build`
+- **Backend:** Node.js, Express.js  
+- **Cloud Services:** AWS S3, EC2, IAM, Security Groups  
+- **AI Processing:** OpenAI API  
+- **Data Handling:** CSV Parsing, API Integration  
+- **Frontend:** React.js (if applicable)  
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# 🛠 Project Setup  
 
-### `npm run eject`
+## 🚀 Running Locally  
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### **1️⃣ Clone the Repository**  
+```bash
+git clone https://github.com/yourusername/h1b-insights.git
+cd h1b-insights
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### **2️⃣ Install Dependencies**  
+```bash
+npm install
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+### **3️⃣ Set Up Environment Variables** 
+Create a .env file in the root directory and add the following:
+```bash
+AWS_ACCESS_KEY_ID=your_aws_key
+AWS_SECRET_ACCESS_KEY=your_aws_secret
+AWS_REGION=your_aws_region
+OPENAI_API_KEY=your_openai_key
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### **4️⃣ Start the Servers** 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+node server.js
+```
+The server will run on http://localhost:5001/.
 
-### Code Splitting
+# 🌍 Deploying on AWS EC2
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+This guide walks you through the steps to deploy your application on an AWS EC2 instance.
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 1️⃣ Launch an EC2 Instance
 
-### Making a Progressive Web App
+1. Choose **Amazon Linux 2023** or **Ubuntu** as your AMI.
+2. Make sure your **security groups** allow inbound traffic on:
+   - **Port 5001** for the API
+   - **Port 3000** for the frontend
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## 2️⃣ Connect to EC2 via SSH
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+1. Locate your `key.pem` file.
+2. Connect using the following command (replace `ec2-user` with `ubuntu` if using Ubuntu):
 
-### Deployment
+```bash
+ssh -i key.pem ec2-user@your-ec2-ip
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 3️⃣ Install Node.js & Git
+```bash
+sudo yum update -y
+sudo yum install -y nodejs git
+```
 
-### `npm run build` fails to minify
+## 4️⃣ Clone the Repository
+```bash
+git clone https://github.com/yourusername/h1b-insights.git
+cd h1b-insights
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 5️⃣ Install Dependencies
+```bash
+npm install
+```
+
+## 6️⃣ Start the Server
+```bash
+node server.js
+```
+
+Your API should now be running at:
+http://your-ec2-ip:5001/
