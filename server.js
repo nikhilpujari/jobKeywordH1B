@@ -24,7 +24,7 @@ const CSV_KEY = 'Consolidated_Employer_Data.csv';  // Replace with your CSV file
 // Middleware
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://18.223.159.118:3000');
+  res.header('Access-Control-Allow-Origin', 'http://18.219.107.147:3000');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   if (req.method === 'OPTIONS') {
